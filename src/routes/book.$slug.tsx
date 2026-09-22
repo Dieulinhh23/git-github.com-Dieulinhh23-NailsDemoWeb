@@ -8,7 +8,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ScheduleAssistant } from "@/components/ScheduleAssistant";
 import { supabase } from "@/integrations/supabase/client";
+import type { ScheduleSuggestion } from "@/lib/ai-schedule.functions";
 import {
   buildSlots,
   formatDuration,
@@ -167,8 +169,17 @@ function BookingPage() {
 
   const currentStep = slot ? 4 : staffId ? 3 : service ? 2 : 1;
 
+  function applySuggestion(suggestion: ScheduleSuggestion) {
+    const startsAt = new Date(suggestion.startIso);
+    setServiceId(suggestion.serviceId);
+    setStaffId(suggestion.staffId);
+    setDate(toDateInputValue(startsAt));
+    setSlot(startsAt);
+  }
+
   return (
     <Shell embed={embed} salon={data.salon}>
+      <ScheduleAssistant slug={slug} onSelect={applySuggestion} />
       <header className="mb-10 border-b border-border pb-7">
         <p className="text-xs font-semibold uppercase tracking-widest text-accent">
           Step {String(currentStep).padStart(2, "0")} of 04
