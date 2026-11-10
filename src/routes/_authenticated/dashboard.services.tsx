@@ -23,6 +23,7 @@ function ServicesPage() {
   const queryClient = useQueryClient();
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [price, setPrice] = useState("45");
   const [duration, setDuration] = useState("45");
 
@@ -48,6 +49,7 @@ function ServicesPage() {
         salon_id: salonId!,
         name,
         description,
+        category: category.trim() || null,
         price_cents: Math.round(Number(price) * 100),
         duration_minutes: Number(duration),
       });
@@ -56,6 +58,7 @@ function ServicesPage() {
     onSuccess: () => {
       setName("");
       setDescription("");
+      setCategory("");
       toast.success("Service added.");
       invalidate();
     },
@@ -98,6 +101,7 @@ function ServicesPage() {
               <h2 className="font-medium">{service.name}</h2>
               <p className="text-sm text-muted-foreground">{service.description}</p>
               <p className="mt-1 text-xs uppercase tracking-widest text-muted-foreground">
+                {service.category && <>{service.category} · </>}
                 {formatPrice(service.price_cents)} · {formatDuration(service.duration_minutes)}
               </p>
             </div>
@@ -137,6 +141,21 @@ function ServicesPage() {
         <div className="space-y-2">
           <Label htmlFor="svc-desc">Description</Label>
           <Textarea id="svc-desc" value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="svc-category">Category</Label>
+          <Input
+            id="svc-category"
+            list="svc-categories"
+            placeholder="e.g. Manicures"
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          />
+          <datalist id="svc-categories">
+            {[...new Set(services.map((s) => s.category).filter(Boolean))].map((c) => (
+              <option key={c} value={c!} />
+            ))}
+          </datalist>
         </div>
         <div className="grid grid-cols-2 gap-3">
           <div className="space-y-2">

@@ -26,8 +26,20 @@ const SLUG = "tom-and-jerry-nails";
 const services = [
   { name: "Classic Manicure", price: "$25", time: "30 min", detail: "Shape, cuticle care, hand massage and your choice of polish." },
   { name: "Gel Manicure", price: "$40", time: "45 min", detail: "A meticulous gel application with lasting colour and high shine." },
+  { name: "Deluxe Spa Manicure", price: "$45", time: "50 min", detail: "Exfoliating scrub, hydrating mask, hot towel and a relaxing hand massage." },
+  { name: "Dip Powder Manicure", price: "$50", time: "60 min", detail: "Lightweight dip powder colour with a smooth, chip-resistant finish." },
+  { name: "Builder Gel Overlay", price: "$55", time: "60 min", detail: "A strengthening gel overlay to support your natural nails." },
+  { name: "Polish Change", price: "$15", time: "15 min", detail: "A quick file, shape and fresh coat of your favourite regular polish." },
   { name: "Spa Pedicure", price: "$45", time: "60 min", detail: "A restorative soak, detailed care, massage and flawless polish." },
+  { name: "Gel Pedicure", price: "$55", time: "60 min", detail: "Our spa pedicure finished with long-wear gel colour and shine." },
+  { name: "Acrylic Full Set", price: "$65", time: "75 min", detail: "A fresh set of acrylic extensions in your choice of shape and length." },
+  { name: "Acrylic Fill", price: "$45", time: "50 min", detail: "Refresh and rebalance your existing acrylics for a polished finish." },
+  { name: "Gel-X Extensions", price: "$75", time: "90 min", detail: "Lightweight, full-cover soft-gel tips for beautiful added length." },
+  { name: "Mani + Pedi Combo", price: "$65", time: "90 min", detail: "A classic manicure and spa pedicure together in one relaxing visit." },
+  { name: "Kids' Mani & Pedi", price: "$30", time: "40 min", detail: "Gentle nail care and playful polish for ages 12 and under." },
   { name: "Nail Art Add-On", price: "$15", time: "30 min", detail: "Fine lines, chrome, French details or a custom design made for you." },
+  { name: "Gel or Dip Removal", price: "$12", time: "20 min", detail: "Careful soak-off removal, cuticle care and nourishing nail oil." },
+  { name: "Paraffin Wax Treatment", price: "$15", time: "15 min", detail: "A warm paraffin dip to leave hands or feet feeling soft and hydrated." },
 ];
 
 const benefits = [
