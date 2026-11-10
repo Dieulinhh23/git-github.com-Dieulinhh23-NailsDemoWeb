@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Clock3, Heart, Leaf, MapPin, Phone, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Clock3, Heart, Leaf, MapPin, Menu, Phone, Sparkles, Star } from "lucide-react";
 
 import heroImage from "@/assets/gold-hero-nails.jpg";
 import lookbookImage from "@/assets/gold-lookbook.jpg";
 import studioImage from "@/assets/gold-studio.jpg";
 import tomAndJerryCutout from "@/assets/tom-and-jerry-cutout.png";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -53,9 +54,9 @@ function Index() {
   return (
     <main id="top" className="overflow-hidden bg-background text-foreground">
       <header className="sticky top-0 z-30 border-b border-border/70 bg-background/90 backdrop-blur">
-        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:px-8">
           <a href="#top" className="leading-tight" aria-label="Tom and Jerry Nails home">
-            <span className="block font-display text-2xl sm:text-3xl">Tom &amp; Jerry</span>
+            <span className="block whitespace-nowrap font-display text-xl sm:text-3xl">Tom &amp; Jerry</span>
             <span className="block text-[0.6rem] font-semibold uppercase tracking-[0.34em] text-primary">Nails and Spa</span>
           </a>
           <nav className="hidden items-center gap-9 text-[0.72rem] font-semibold uppercase tracking-[0.18em] md:flex" aria-label="Main navigation">
@@ -64,9 +65,34 @@ function Index() {
             <a href="#gallery" className="transition-colors hover:text-primary">Gallery</a>
             <Link to="/contact" className="transition-colors hover:text-primary">Contact</Link>
           </nav>
-          <Button asChild className="uppercase tracking-[0.18em]">
-            <Link to="/book/$slug" params={{ slug: SLUG }}>Book now</Link>
-          </Button>
+          <div className="flex shrink-0 items-center gap-2">
+            <Button asChild className="h-11 px-3 text-xs uppercase tracking-widest sm:px-4">
+              <Link to="/book/$slug" params={{ slug: SLUG }}>Book now</Link>
+            </Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open navigation menu">
+                  <Menu aria-hidden="true" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent className="w-[min(20rem,100%)]">
+                <SheetHeader className="text-left">
+                  <SheetTitle className="font-display text-2xl">Tom &amp; Jerry</SheetTitle>
+                  <SheetDescription>Nails and Spa</SheetDescription>
+                </SheetHeader>
+                <nav className="mt-8 flex flex-col gap-2" aria-label="Mobile navigation">
+                  {[{ href: "#services", label: "Services" }, { href: "#about", label: "About" }, { href: "#gallery", label: "Gallery" }].map((item) => (
+                    <SheetClose asChild key={item.href}>
+                      <a href={item.href} className="flex min-h-12 items-center rounded-sm px-3 hover:bg-muted">{item.label}</a>
+                    </SheetClose>
+                  ))}
+                  <SheetClose asChild>
+                    <Link to="/contact" className="flex min-h-12 items-center rounded-sm px-3 hover:bg-muted">Contact</Link>
+                  </SheetClose>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </header>
 
@@ -123,11 +149,11 @@ function Index() {
           </div>
           <div className="mt-14 grid gap-6 sm:grid-cols-2">
             {services.map((service) => (
-              <article key={service.name} className="flex flex-col justify-between gap-6 border border-border bg-card p-8 transition-shadow hover:shadow-lg">
+              <article key={service.name} className="flex flex-col justify-between gap-6 border border-border bg-card p-5 transition-shadow sm:p-8 hover:shadow-lg">
                 <div>
                   <div className="flex items-baseline justify-between gap-4">
                     <h3 className="font-display text-3xl">{service.name}</h3>
-                    <span className="font-display text-2xl text-primary">{service.price}</span>
+                    <span className="shrink-0 font-display text-2xl text-primary">{service.price}</span>
                   </div>
                   <p className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">{service.time}</p>
                   <p className="mt-4 text-sm leading-7 text-muted-foreground">{service.detail}</p>
@@ -177,7 +203,7 @@ function Index() {
             {benefits.map((benefit, index) => (
               <div key={benefit.title} className="border-t border-primary/40 pt-6">
                 <div className="flex items-center gap-3">
-                  <benefit.icon className="size-5 text-primary" />
+                  <benefit.icon className="size-5 shrink-0 text-primary" />
                   <span className="font-display text-2xl text-primary">{String(index + 1).padStart(2, "0")}</span>
                 </div>
                 <h3 className="mt-4 font-display text-2xl leading-snug">{benefit.title}</h3>

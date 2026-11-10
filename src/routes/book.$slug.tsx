@@ -276,7 +276,7 @@ function BookingPage() {
             onClick={() => setShowAssistant((v) => !v)}
             className="mt-5 inline-flex items-center gap-2 text-sm text-accent underline-offset-4 hover:underline"
           >
-            <Sparkles className="size-4" />
+            <Sparkles className="size-4 shrink-0" />
             {showAssistant ? "Hide the booking assistant" : "Not sure what to pick? Ask our assistant"}
           </button>
         )}
@@ -382,7 +382,7 @@ function BookingPage() {
                 <Button
                   type="button"
                   variant="editorial-outline"
-                  className="h-auto min-h-16 justify-start gap-3 px-5 py-4 text-left sm:col-span-2"
+                  className="h-auto min-h-16 whitespace-normal justify-start gap-3 px-5 py-4 text-left sm:col-span-2"
                   onClick={() => {
                     setStaffChoice(ANY_STAFF);
                     setSlot(null);
@@ -402,7 +402,7 @@ function BookingPage() {
                   key={member.id}
                   type="button"
                   variant="editorial-outline"
-                  className="h-auto min-h-16 justify-start px-5 py-4 text-left"
+                  className="h-auto min-h-16 whitespace-normal justify-start px-5 py-4 text-left"
                   onClick={() => {
                     setStaffChoice(member.id);
                     setSlot(null);
@@ -572,7 +572,7 @@ function BookingPage() {
               />
             </div>
             <div className="flex items-center gap-2 border-t border-border pt-5 text-xs text-muted-foreground">
-              <ShieldCheck className="size-4 text-accent" /> Your details are used only for this appointment.
+              <ShieldCheck className="size-4 shrink-0 text-accent" /> Your details are used only for this appointment.
             </div>
             <Button type="submit" size="lg" className="w-full sm:w-auto" disabled={submitting}>
               {submitting
@@ -647,7 +647,7 @@ function Shell({ embed, salon, children }: { embed?: boolean | undefined; salon?
             </div>
           </aside>
         )}
-        <div className="min-w-0 p-6 sm:p-10 lg:p-12">{children}</div>
+        <div className="min-w-0 p-4 sm:p-10 lg:p-12">{children}</div>
       </div>
     </main>
   );
